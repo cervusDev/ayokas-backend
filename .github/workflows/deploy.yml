@@ -1,0 +1,42 @@
+name: 🚀 Deploy
+
+on:
+  push:
+    branches:
+      - main
+      - development
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🔍 Checkout
+        uses: actions/checkout@v4
+
+      - name: 📦 Instalar PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 9
+
+      - name: 🧰 Instalar dependências
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧱 Build
+        run: pnpm run build
+
+      - name: 🚀 Deploy para Railway (Main)
+        if: github.ref == 'refs/heads/main'
+        uses: railwayapp/actions@v1
+        with:
+          railwayToken: ${{ secrets.RAILWAY_TOKEN }}
+          serviceName: meu-projeto-prod
+
+      - name: 🚀 Deploy para Railway (Development)
+        if: github.ref == 'refs/heads/development'
+        uses: railwayapp/actions@v1
+        with:
+          railwayToken: ${{ secrets.RAILWAY_TOKEN }}
+          serviceName: meu-projeto-dev
+    env:
+      DATABASE_PUBLIC_URL: ${{ secrets.DATABASE_PUBLIC_URL }}
