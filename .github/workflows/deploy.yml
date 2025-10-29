@@ -23,6 +23,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: 🧱 Build
-        run: pnpm run build
+        run: pnpm run clean && pnpm run build
+
     env:
       DATABASE_PUBLIC_URL: ${{ secrets.DATABASE_PUBLIC_URL }}
