@@ -5,7 +5,7 @@ export interface IControllerRequest<
 > {
   body: TBody;
   metadata?: {
-    backofficeAdminId?: string;
+    adminId?: string;
   };
   params: TParams;
   query: TQuery;

@@ -10,7 +10,7 @@ export class HealthController implements IController {
   ): Promise<IControllerResponse<HealthControllerSchemaResponse>> {
     const response: IControllerResponse<HealthControllerSchemaResponse> = {
       body: {
-        timestamp: DateHelper.now().toISO(),
+        timestamp: DateHelper.now().format(),
         status: 'ok',
       },
       statusCode: EHttpCode.OK,

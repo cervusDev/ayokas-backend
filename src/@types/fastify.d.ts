@@ -4,7 +4,7 @@ import 'fastify';
 declare module 'fastify' {
   interface FastifyRequest {
     metadata: {
-      backofficeAdminId?: string;
+      adminId?: string;
     };
   }
 }

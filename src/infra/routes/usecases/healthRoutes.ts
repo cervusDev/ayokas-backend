@@ -7,6 +7,7 @@ export const healthRoutes: IRoute[] = [
   {
     method: 'GET',
     path: '/health',
+    middlewares: [],
     schemas: {
       response: {
         [EHttpCode.OK]: healthControllerSchemaResponse,
