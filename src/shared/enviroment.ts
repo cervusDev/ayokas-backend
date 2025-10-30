@@ -9,7 +9,8 @@ export enum EEnvironment {
 const envSchema = z.object({
   NODE_ENV: z.enum([EEnvironment.DEVELOPMENT, EEnvironment.PRODUCTION, EEnvironment.TESTING]),
   PORT: z.string().transform(Number),
-  DATABASE_URL: z.string()
+  DATABASE_URL: z.string(),
+  JWT_SECRET: z.string(),
 });
 
 export const envConfig = envSchema.parse(process.env);
@@ -33,3 +34,12 @@ interface IDatabaseEnv {
 export const databaseEnv: IDatabaseEnv = {
   url: envConfig.DATABASE_URL,
 };
+
+interface IJwtEnv {
+  secretBackoffice: string;
+}
+
+export const jwtEnv: IJwtEnv = {
+  secretBackoffice: envConfig.JWT_SECRET,
+};
+
