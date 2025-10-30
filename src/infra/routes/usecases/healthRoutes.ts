@@ -1,7 +1,7 @@
 import { EHttpCode } from "shared/enums";
 import { IRoute } from "../IRoute";
-import { healthControllerSchemaResponse } from "application/controller/health/healthControllerSchemas";
-import { makeHealthController } from "application/controller/health/healthControllerFactory";
+import { makeHealthController } from "usecases/health/controller/healthControllerFactory";
+import { healthControllerSchemaResponse } from "usecases/health/controller/healthControllerSchemas";
 
 export const healthRoutes: IRoute[] = [
   {
