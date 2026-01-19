@@ -1,12 +1,12 @@
+import { ZodObject } from 'zod';
 import { IController } from '@infra/interfaces/IController';
 import { IMiddleware } from '@infra/interfaces/IMiddleware';
-import { ZodObject } from 'zod';
 
 export interface IRoute {
-  controller: IController;
-  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
-  middlewares?: IMiddleware[];
   path: string;
+  controller: IController;
+  middlewares?: IMiddleware[];
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   schemas?: {
     body?: ZodObject<any>;
     params?: ZodObject<any>;

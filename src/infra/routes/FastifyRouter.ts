@@ -1,6 +1,6 @@
+import { IRouterAdapter } from './IRouterAdapter';
 import { IController } from '@infra/interfaces/IController';
 import { type FastifyReply, type FastifyRequest } from 'fastify';
-import { IRouterAdapter } from './IRouterAdapter';
 
 
 export class FastifyRouter
