@@ -1,26 +1,26 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": false,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true,
-    "rootDir": "src",
+    "target": "ES2022",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
     "outDir": "dist",
-    
-    "baseUrl": "src",
+    "rootDir": "src",
+
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+
+    "sourceMap": true,
+    "baseUrl": "./src",
     "paths": {
-      "@infra/*": ["infra/*"]
+      "application/*": ["application/*"],
+      "config/*": ["config/*"],
+      "domain/*": ["domain/*"],
+      "environment/*": ["environment/*"],
+      "@infra/*": ["infra/*"],
+      "shared/*": ["shared/*"]
     }
-  }
+  },
+  "include": ["src"]
 }

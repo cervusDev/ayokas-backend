@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { Bootstrap } from '@infra/bootstrap';
+import { Bootstrap } from './infra/bootstrap';
 import { FastifyServer } from '@infra/server/FastifyServer';
 import { FastifyErrorHandler } from '@infra/error/FastifyErrorHandler';
 

@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "dev": "tsx watch src/starter.ts",
-    "build": "tsc",
+    "build": "tsc && tsc-alias",
     "start": "node dist/starter.js",
     "lint": "eslint src --ext .ts",
     "db:generate": "npx drizzle-kit generate",
@@ -32,6 +32,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.16.3",
     "qs": "^6.14.0",
+    "tsc-alias": "^1.8.16",
     "tsx": "^4.20.6",
     "typescript": "^5.9.3",
     "uuid": "^13.0.0",
