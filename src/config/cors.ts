@@ -1,5 +1,5 @@
 const corsConfig = {
-  allowedHosts: ['backoffice.carrocao.com'],
+  allowedHosts: ['serene-backend.cervusdev.com.br'],
 };
 
 export default corsConfig;
