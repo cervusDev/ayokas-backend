@@ -1,14 +1,18 @@
 import { AsyncLocalStorage } from 'async_hooks';
 import { drizzle as drizzlePostgreSQL, NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
+import path from 'path';
 import fs from 'fs';
 import { databaseEnv, EEnvironment, generalEnv } from 'shared/enviroment';
 import { LoggerHelper } from 'shared/logHelper';
+
+
 
 interface IStorageData {
   instance: NodePgDatabase;
 }
 
+const certPath = path.resolve(process.cwd(), 'certs/global-bundle.pem');
 const storage = new AsyncLocalStorage<IStorageData>();
 
 class DrizzleDatabase {
@@ -29,7 +33,7 @@ class DrizzleDatabase {
       connectionTimeoutMillis: 5000,
       ssl: {
         rejectUnauthorized: true,
-        ca: fs.readFileSync('certs/global-bundle.pem').toString(),
+        ca: fs.readFileSync(certPath).toString(),
       },
     });
     this.pool.on('error', () => {
