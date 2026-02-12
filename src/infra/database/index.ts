@@ -31,6 +31,10 @@ class DrizzleDatabase {
       max: 20,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 5000,
+      ssl: {
+        rejectUnauthorized: true,
+        ca: fs.readFileSync(certPath).toString(),
+      },
     });
     this.pool.on('error', () => {
       LoggerHelper.error('[DrizzleORM] ❌ Erro de conexão');
