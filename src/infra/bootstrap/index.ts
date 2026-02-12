@@ -52,6 +52,7 @@ export class Bootstrap implements IBootstrap {
 
   private handleBootstrapError(err: unknown): void {
     if (err instanceof Error) {
+      console.log('error', err)
       LoggerHelper.error({
         message: `❌ Erro ao iniciar ${generalEnv.name}`,
         stack: err.stack,

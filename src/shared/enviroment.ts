@@ -11,6 +11,11 @@ const envSchema = z.object({
   PORT: z.string().transform(Number),
   DATABASE_URL: z.string(),
   JWT_SECRET: z.string(),
+  DATABASE_USER: z.string(),
+  DATABASE_PASS: z.string(),
+  DATABASE_HOST: z.string(),
+  DATABASE_PORT: z.string(),
+  DATABASE_NAME: z.string(),
 });
 
 export const envConfig = envSchema.parse(process.env);
@@ -23,16 +28,24 @@ interface IGeneralEnv {
 
 export const generalEnv: IGeneralEnv = {
   environment: envConfig.NODE_ENV,
-  name: 'ayokas',
+  name: 'serene.cervusdev.com.br',
   port: envConfig.PORT,
 };
 
 interface IDatabaseEnv {
-  url: string;
+  userDatabase: string;
+  passDatabase: string;
+  hostDatabase: string;
+  portDatabase: string;
+  nameDatabase: string;
 }
 
 export const databaseEnv: IDatabaseEnv = {
-  url: envConfig.DATABASE_URL,
+  nameDatabase: envConfig.DATABASE_NAME,
+  hostDatabase: envConfig.DATABASE_HOST,
+  passDatabase: envConfig.DATABASE_PASS,
+  portDatabase: envConfig.DATABASE_PORT,
+  userDatabase: envConfig.DATABASE_USER,
 };
 
 interface IJwtEnv {
@@ -42,4 +55,3 @@ interface IJwtEnv {
 export const jwtEnv: IJwtEnv = {
   secretBackoffice: envConfig.JWT_SECRET,
 };
-

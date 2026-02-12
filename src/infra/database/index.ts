@@ -1,9 +1,7 @@
 import { AsyncLocalStorage } from 'async_hooks';
-import {
-  drizzle as drizzlePostgreSQL,
-  NodePgDatabase,
-} from 'drizzle-orm/node-postgres';
+import { drizzle as drizzlePostgreSQL, NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
+import fs from 'fs';
 import { databaseEnv, EEnvironment, generalEnv } from 'shared/enviroment';
 import { LoggerHelper } from 'shared/logHelper';
 
@@ -19,11 +17,20 @@ class DrizzleDatabase {
   private readonly pool: Pool;
 
   constructor() {
+    console.log('DATABASE_URL =>', databaseEnv);
+
     this.pool = new Pool({
-      connectionString: databaseEnv.url,
+      host: databaseEnv.hostDatabase,
+      password: databaseEnv.passDatabase,
+      user: databaseEnv.userDatabase,
+      database: databaseEnv.nameDatabase,
       max: 20,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 5000,
+      ssl: {
+        rejectUnauthorized: true,
+        ca: fs.readFileSync('certs/global-bundle.pem').toString(),
+      },
     });
     this.pool.on('error', () => {
       LoggerHelper.error('[DrizzleORM] ❌ Erro de conexão');
