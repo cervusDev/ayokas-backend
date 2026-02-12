@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf dist",
-    "dev": "tsx watch src/main.ts",
+    "dev": "tsx watch src/starter.ts",
     "build": "tsc",
-    "start": "node dist/main.js",
+    "start": "node dist/starter.js",
     "lint": "eslint src --ext .ts",
     "db:generate": "npx drizzle-kit generate",
     "db:migrate": "npx drizzle-kit migrate"
