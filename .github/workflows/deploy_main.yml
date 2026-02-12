@@ -6,7 +6,7 @@ on:
 
 env:
   AWS_REGION: us-east-1
-  AWS_ACCOUNT_ID: 8517-2518-5832
+  AWS_ACCOUNT_ID: 851725185832
   ECR_REPOSITORY: serene.cervusdev.com.br
   DOCKER_IMAGE_TAG: 1.0.0
 
