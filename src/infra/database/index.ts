@@ -12,7 +12,7 @@ interface IStorageData {
   instance: NodePgDatabase;
 }
 
-const certPath = path.resolve(process.cwd(), 'certs/global-bundle.pem');
+const certPath = '/certs/global-bundle.pem';
 const storage = new AsyncLocalStorage<IStorageData>();
 
 class DrizzleDatabase {
