@@ -6,8 +6,6 @@ import fs from 'fs';
 import { databaseEnv, EEnvironment, generalEnv } from 'shared/enviroment';
 import { LoggerHelper } from 'shared/logHelper';
 
-
-
 interface IStorageData {
   instance: NodePgDatabase;
 }
@@ -24,10 +22,7 @@ class DrizzleDatabase {
     console.log('DATABASE_URL =>', databaseEnv);
 
     this.pool = new Pool({
-      host: databaseEnv.hostDatabase,
-      password: databaseEnv.passDatabase,
-      user: databaseEnv.userDatabase,
-      database: databaseEnv.nameDatabase,
+      connectionString: databaseEnv.urlDatabase,
       max: 20,
       idleTimeoutMillis: 30000,
       connectionTimeoutMillis: 5000,

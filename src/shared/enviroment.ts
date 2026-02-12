@@ -33,6 +33,7 @@ export const generalEnv: IGeneralEnv = {
 };
 
 interface IDatabaseEnv {
+  urlDatabase: string;
   userDatabase: string;
   passDatabase: string;
   hostDatabase: string;
@@ -41,6 +42,7 @@ interface IDatabaseEnv {
 }
 
 export const databaseEnv: IDatabaseEnv = {
+  urlDatabase: envConfig.DATABASE_URL,
   nameDatabase: envConfig.DATABASE_NAME,
   hostDatabase: envConfig.DATABASE_HOST,
   passDatabase: envConfig.DATABASE_PASS,
