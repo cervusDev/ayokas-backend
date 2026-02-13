@@ -46,3 +46,32 @@ jobs:
         run: |
           docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:$DOCKER_IMAGE_TAG
           docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+      
+      - name: Run database migration on EC2 (PRODUCTION)
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          script: |
+            AWS_REGION=$AWS_REGION
+            AWS_ACCOUNT_ID=$AWS_ACCOUNT_ID
+            IMAGE=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPOSITORY:latest
+
+            echo "Logging into ECR..."
+            aws ecr get-login-password --region $AWS_REGION | \
+              docker login --username AWS --password-stdin \
+              $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+
+            echo "Pulling latest image (seguindo padrão atual)..."
+            docker pull latest
+
+            echo "Running production migration..."
+            docker run --rm \
+              --network traefik \
+              -e NODE_ENV=production \
+              -e DATABASE_URL='${{ secrets.DATABASE_URL_PROD }}' \
+              latest \
+              pnpm db:migrate
+
+            echo "Migration finished successfully."
