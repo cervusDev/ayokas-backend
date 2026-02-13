@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   postgres:
     image: postgres:16
@@ -12,12 +10,12 @@ services:
     ports:
       - "5431:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - serene_data:/var/lib/postgresql/data
     networks:
       - serene_net
 
 volumes:
-  postgres_data:
+  serene_data:
 
 networks:
   serene_net:

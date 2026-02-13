@@ -19,8 +19,6 @@ class DrizzleDatabase {
   private readonly pool: Pool;
 
   constructor() {
-    console.log('DATABASE_URL =>', databaseEnv);
-
     this.pool = new Pool({
       connectionString: databaseEnv.urlDatabase,
       max: 20,
