@@ -33,6 +33,7 @@ RUN corepack enable
 
 # Copia apenas o necessário para rodar
 COPY package.json ./
+COPY src/infra/database/migrations ./dist/infra/database/migrations
 COPY drizzle.config.ts ./
 COPY --from=dependencies /app/node_modules ./node_modules
 COPY --from=build /app/dist ./dist
