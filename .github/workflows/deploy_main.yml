@@ -69,5 +69,6 @@ jobs:
               --network traefik \
               -e NODE_ENV=production \
               -e DATABASE_URL='${{ secrets.DATABASE_URL_PROD }}' \
+              -e NODE_TLS_REJECT_UNAUTHORIZED=0 \
               $IMAGE \
               pnpm db:migrate
